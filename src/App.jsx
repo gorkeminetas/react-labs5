@@ -3,7 +3,7 @@ import GameAdmin from './GameAdmin.jsx'
 
 const App = () => (
   
-  <GameAdmin/>
+ <GameAdmin/>
 
 )
 

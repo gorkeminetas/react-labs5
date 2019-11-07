@@ -5,22 +5,43 @@ import PlayerTwo from './PlayerTwo'
 class GameAdmin extends React.Component{
     constructor(){
         super();
+        this.PlayerOneChanged=this.PlayerOneChanged.bind(this);
+        this.PlayerTwoChanged=this.PlayerTwoChanged.bind(this);
+
+        this.state={
+            PlayerOneName: "", PlayerTwoName: ""
+        }
+        
     }
+    PlayerOneChanged(ev){
+
+    const PlayerOneName=ev.target.value;
+    this.setState({PlayerOneName});
+    }
+
+    PlayerTwoChanged(ev){
+
+        const PlayerTwoName=ev.target.value;
+        this.setState({PlayerTwoName});
+        }
+
     render(){
+
+        const {PlayerOneName,PlayerTwoName}=this.state;
         return(
             <div>
-                <PlayerOne/>
-                <PlayerTwo/>
+                <PlayerOne name={PlayerOneName}/>
+                <PlayerTwo name={PlayerTwoName}/>
                 <hr>
                 <label>
-                    Name Player One:
+                    Set Name of Player One:
                 </label>
-                <input/>
+                <input type="text" value={PlayerOneName} onChange={this.PlayerOneChanged}/>
                 <br/>
                 <label>
-                    Name Player Two:
+                    Set Name of Player Two:
                 </label>
-                <input/>
+                <input type="text" value={PlayerTwoName} onChange={this.PlayerTwoChanged}/>
                 </hr>
 
             </div>
