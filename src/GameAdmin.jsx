@@ -7,9 +7,12 @@ class GameAdmin extends React.Component{
         super();
         this.PlayerOneChanged=this.PlayerOneChanged.bind(this);
         this.PlayerTwoChanged=this.PlayerTwoChanged.bind(this);
+        this.PlayerOneActivity=this.PlayerOneActivity.bind(this);
+        this.PlayerTwoActivity=this.PlayerTwoActivity.bind(this);
 
         this.state={
-            PlayerOneName: "", PlayerTwoName: ""
+            PlayerOneName: "", PlayerTwoName: "" ,
+            PlayerOneActive: false , PlayerTwoActive: true
         }
         
     }
@@ -25,26 +28,45 @@ class GameAdmin extends React.Component{
         this.setState({PlayerTwoName});
         }
 
+    PlayerOneActivity(ev){
+        this.setState({PlayerOneActive: true ,PlayerTwoActive : false});
+    }
+    PlayerTwoActivity(ev){
+        this.setState({PlayerOneActive: false ,PlayerTwoActive : true});
+    }
     render(){
 
-        const {PlayerOneName,PlayerTwoName}=this.state;
+        const {PlayerOneName,PlayerTwoName,PlayerOneActive,PlayerTwoActive}=this.state;
         return(
             <div>
-                <PlayerOne name={PlayerOneName}/>
-                <PlayerTwo name={PlayerTwoName}/>
-                <hr>
-                <label>
+                <PlayerOne name={PlayerOneName} a={PlayerOneActive} clicked={this.PlayerOneActivity}/>
+                <br/>
+                <PlayerTwo name={PlayerTwoName} a={PlayerTwoActive} clicked={this.PlayerTwoActivity}/>
+                <hr/>
+                
+
+                <div>
+                    <label>
                     Set Name of Player One:
-                </label>
+                </label> 
                 <input type="text" value={PlayerOneName} onChange={this.PlayerOneChanged}/>
                 <br/>
-                <label>
+                </div>
+               
+                <div>
+                   <label>
                     Set Name of Player Two:
                 </label>
-                <input type="text" value={PlayerTwoName} onChange={this.PlayerTwoChanged}/>
-                </hr>
+                <input type="text" value={PlayerTwoName} onChange={this.PlayerTwoChanged}/> 
+                <br/>
+                </div>
 
-            </div>
+                </div>
+        
+                
+                
+
+            
         )
     }
 }

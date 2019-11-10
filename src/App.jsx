@@ -1,9 +1,11 @@
 import React from 'react'
-import GameAdmin from './GameAdmin.jsx'
+import GameAdmin from './GameAdmin'
 
 const App = () => (
-  
- <GameAdmin/>
+  <div>
+     <GameAdmin/> 
+  </div>
+ 
 
 )
 
