@@ -12,7 +12,8 @@ class GameAdmin extends React.Component{
 
         this.state={
             PlayerOneName: "", PlayerTwoName: "" ,
-            PlayerOneActive: false , PlayerTwoActive: true
+            PlayerOneActive: false , PlayerTwoActive: true,
+            PlayerOneCount: 0,PlayerTwoCount:1
         }
         
     }
@@ -29,19 +30,21 @@ class GameAdmin extends React.Component{
         }
 
     PlayerOneActivity(ev){
-        this.setState({PlayerOneActive: true ,PlayerTwoActive : false});
+        const PlayerOneCount=this.state.PlayerOneCount+1;
+        this.setState({PlayerOneActive: true ,PlayerTwoActive : false, PlayerOneCount});
     }
     PlayerTwoActivity(ev){
-        this.setState({PlayerOneActive: false ,PlayerTwoActive : true});
+        const PlayerTwoCount=this.state.PlayerTwoCount+1;
+        this.setState({PlayerOneActive: false ,PlayerTwoActive : true, PlayerTwoCount});
     }
     render(){
 
-        const {PlayerOneName,PlayerTwoName,PlayerOneActive,PlayerTwoActive}=this.state;
+        const {PlayerOneName,PlayerTwoName,PlayerOneActive,PlayerTwoActive,PlayerOneCount,PlayerTwoCount}=this.state;
         return(
             <div>
-                <PlayerOne name={PlayerOneName} a={PlayerOneActive} clicked={this.PlayerOneActivity}/>
+                <PlayerOne name={PlayerOneName} a={PlayerOneActive} clicked={this.PlayerOneActivity} no={PlayerOneCount}/>
                 <br/>
-                <PlayerTwo name={PlayerTwoName} a={PlayerTwoActive} clicked={this.PlayerTwoActivity}/>
+                <PlayerTwo name={PlayerTwoName} a={PlayerTwoActive} clicked={this.PlayerTwoActivity} no={PlayerTwoCount}/>
                 <hr/>
                 
 
@@ -50,7 +53,7 @@ class GameAdmin extends React.Component{
                     Set Name of Player One:
                 </label> 
                 <input type="text" value={PlayerOneName} onChange={this.PlayerOneChanged}/>
-                <br/>
+                <br/><br/>
                 </div>
                
                 <div>
